@@ -1,1 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Image Slider & Video Editor</title>
 
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="manifest" href="manifest.json">
+
+  <script src="https://cdn.jsdelivr.net/npm/gifshot@0.3.2/dist/gifshot.min.js"></script>
+</head>
+<body class="dark">
+
+<header>
+  <h1>🎞️ Image Slider & Video Editor</h1>
+</header>
+
+<main>
+
+  <div id="drop-zone">📂 Drag & Drop Images Here</div>
+  <input type="file" id="file-input" multiple accept="image/*">
+
+  <div id="slider" class="slider"></div>
+
+  <div class="controls">
+    <button id="prev">◀</button>
+    <button id="next">▶</button>
+
+    <select id="animation">
+      <option value="fade">Fade</option>
+      <option value="slide">Slide</option>
+      <option value="zoom">Zoom</option>
+      <option value="bounce">Bounce</option>
+    </select>
+
+    <button id="exportGif">⬇ GIF</button>
+
+    <input type="file" id="music-file" accept="audio/*">
+    <button id="exportVideo">⬇ Video</button>
+  </div>
+
+  <section>
+    <h3>Timeline</h3>
+    <div id="timeline-container"></div>
+  </section>
+
+  <section>
+    <h3>Text Overlay</h3>
+    <input id="slide-text" placeholder="Enter caption">
+    <select id="text-position">
+      <option value="bottom">Bottom</option>
+      <option value="center">Center</option>
+      <option value="top">Top</option>
+    </select>
+  </section>
+
+  <section>
+    <h3>Theme</h3>
+    <select id="theme">
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
+      <option value="neon">Neon</option>
+    </select>
+  </section>
+
+</main>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
