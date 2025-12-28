@@ -1,1 +1,43 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
 
+header {
+  padding: 1rem;
+  text-align: center;
+}
+
+.slider {
+  position: relative;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.slide-text {
+  position: absolute;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.slide-text.bottom { bottom: 10px; }
+.slide-text.center { top: 50%; transform: translateY(-50%); }
+.slide-text.top { top: 10px; }
+
+.timeline-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.timeline-item img {
+  width: 80px;
+}
