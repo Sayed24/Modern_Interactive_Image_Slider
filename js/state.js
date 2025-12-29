@@ -1,8 +1,8 @@
 export const state = {
   images: [],
-  currentIndex: 0,
+  current: 0,
   texts: [],
-  textPositions: [],
+  positions: [],
   durations: [],
   animation: "fade",
   theme: "dark"
