@@ -1,3 +1,31 @@
-@media (max-width: 768px) {
-  .slider { height: 220px; }
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    order: 2;
+  }
+
+  section {
+    order: 1;
+  }
+
+  #timeline {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 16px;
+  }
+
+  button {
+    padding: 9px 12px;
+  }
+
+  .timeline-item {
+    min-width: 120px;
+  }
 }
