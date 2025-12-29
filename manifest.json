@@ -1,8 +1,8 @@
 {
-  "name": "Image Slider Video Editor",
+  "name": "Image Slider Editor",
   "short_name": "Slider",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#38bdf8",
+  "theme_color": "#0ea5e9",
   "background_color": "#020617"
 }
