@@ -1,37 +1,32 @@
 import { state } from "./state.js";
 
-export async function exportVideoWithMusic(audioFile) {
-  const canvas = document.createElement("canvas");
-  canvas.width = 800;
-  canvas.height = 450;
-  const ctx = canvas.getContext("2d");
+export async function exportVideo(returnBlob = false) {
+  return new Promise(async resolve => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 800;
+    canvas.height = 450;
+    const ctx = canvas.getContext("2d");
 
-  const stream = canvas.captureStream(30);
-  const audio = new Audio(URL.createObjectURL(audioFile));
-  const audioStream = audio.captureStream();
-  audioStream.getTracks().forEach(t => stream.addTrack(t));
+    const stream = canvas.captureStream(30);
+    const recorder = new MediaRecorder(stream);
+    const chunks = [];
 
-  const recorder = new MediaRecorder(stream);
-  const chunks = [];
-  recorder.ondataavailable = e => chunks.push(e.data);
+    recorder.ondataavailable = e => chunks.push(e.data);
+    recorder.start();
 
-  recorder.start();
-  audio.play();
+    for (let i = 0; i < state.images.length; i++) {
+      await draw(ctx, state.images[i]);
+      await wait((state.durations[i] || 0.6) * 1000);
+    }
 
-  for (let i = 0; i < state.images.length; i++) {
-    await draw(ctx, state.images[i]);
-    await new Promise(r => setTimeout(r, (state.durations[i] || 0.6) * 1000));
-  }
+    recorder.stop();
 
-  recorder.stop();
-  recorder.onstop = () => {
-    const blob = new Blob(chunks, { type: "video/webm" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "slider.webm";
-    a.click();
-  };
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: "video/webm" });
+      if (returnBlob) resolve(blob);
+      else download(blob);
+    };
+  });
 }
 
 function draw(ctx, src) {
@@ -44,4 +39,15 @@ function draw(ctx, src) {
     };
     img.src = src;
   });
+}
+
+function wait(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
+function download(blob) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "slider.webm";
+  a.click();
 }
