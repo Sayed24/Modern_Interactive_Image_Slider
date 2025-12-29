@@ -1,21 +1,24 @@
-import { initDB, getImages } from "./storage.js";
+import { initDB, loadImages } from "./storage.js";
 import { state } from "./state.js";
 import { renderSlider } from "./slider.js";
+import { renderTimeline } from "./timeline.js";
+import { setupText } from "./text.js";
 import { setupUI } from "./ui.js";
 import { enableSwipe } from "./gestures.js";
-import { renderTimeline } from "./timeline.js";
-import { setupTextOverlay } from "./text.js";
+import { pushHistory } from "./history.js";
 
 async function init() {
   await initDB();
-  const imgs = await getImages();
-  state.images = imgs.map(b => URL.createObjectURL(b));
+
+  const files = await loadImages();
+  state.images = files.map(f => URL.createObjectURL(f));
 
   document.body.className = localStorage.getItem("theme") || "dark";
 
+  pushHistory();
   renderSlider();
   renderTimeline();
-  setupTextOverlay();
+  setupText();
   setupUI();
   enableSwipe(document.getElementById("slider"));
 
