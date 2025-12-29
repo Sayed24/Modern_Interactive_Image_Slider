@@ -1,66 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Modern Image Slider & Video Editor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slider & Video Editor</title>
 
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/themes.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="manifest" href="manifest.json">
 
   <script src="https://cdn.jsdelivr.net/npm/gifshot@0.3.2/dist/gifshot.min.js"></script>
 </head>
+
 <body class="dark">
 
 <header>
-  <h1>🎞️ Image Slider & Video Editor</h1>
+  <h1>🎬 Image Slider & Video Editor</h1>
 </header>
 
 <main>
 
-  <div id="drop-zone">📂 Drag & Drop Images Here</div>
-  <input type="file" id="file-input" multiple accept="image/*">
+  <section class="upload">
+    <input type="file" id="fileInput" multiple accept="image/*">
+  </section>
 
-  <div id="slider" class="slider"></div>
+  <section id="slider" class="slider"></section>
 
-  <div class="controls">
+  <section class="controls">
     <button id="prev">◀</button>
     <button id="next">▶</button>
+
+    <button id="undo">Undo</button>
+    <button id="redo">Redo</button>
 
     <select id="animation">
       <option value="fade">Fade</option>
       <option value="slide">Slide</option>
       <option value="zoom">Zoom</option>
-      <option value="bounce">Bounce</option>
     </select>
 
-    <button id="exportGif">⬇ GIF</button>
+    <button id="exportGif">Export GIF</button>
+    <button id="exportWebm">Export WEBM</button>
+    <button id="exportMp4">Export MP4</button>
 
-    <input type="file" id="music-file" accept="audio/*">
-    <button id="exportVideo">⬇ Video</button>
-  </div>
-
-  <section>
-    <h3>Timeline</h3>
-    <div id="timeline-container"></div>
+    <input type="file" id="musicInput" accept="audio/*">
   </section>
 
-  <section>
+  <section class="timeline">
+    <h3>Timeline (Drag to reorder)</h3>
+    <div id="timeline"></div>
+  </section>
+
+  <section class="text-editor">
     <h3>Text Overlay</h3>
-    <input id="slide-text" placeholder="Enter caption">
-    <select id="text-position">
+    <input id="textInput" placeholder="Slide text">
+    <select id="textPosition">
       <option value="bottom">Bottom</option>
       <option value="center">Center</option>
       <option value="top">Top</option>
     </select>
   </section>
 
-  <section>
+  <section class="theme">
     <h3>Theme</h3>
-    <select id="theme">
+    <select id="themeSelect">
       <option value="dark">Dark</option>
       <option value="light">Light</option>
       <option value="neon">Neon</option>
